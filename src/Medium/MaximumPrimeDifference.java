@@ -9,6 +9,7 @@ public class MaximumPrimeDifference {
     private Set<Integer> primeNums = new HashSet<>();
     private Set<Integer> notPrime = new HashSet<>();
 
+    /**Function to check if the current number is prime or not*/
     private boolean isPrime(int n) {
         if (n == 1) return false;
         if (primeNums.contains(n)) return true;
@@ -23,13 +24,18 @@ public class MaximumPrimeDifference {
         return true;
     }
 
+    /**Function to calculate the maximum difference between the maxPrimeIndex and minPrime Index*/
     public int maximumPrimeDifference(int[] nums) {
         int lowestInd = -1, highestInd = -1;
         for (int i = 0; i < nums.length; i++) {
+            // checking if the current number is prime
             if (isPrime(nums[i])) {
+                // if yes then we check if lowest and highest is assigned
                 if (lowestInd == -1) lowestInd = i;
+                // if already assigned we find min value for minIndex
                 else lowestInd = Math.min(i, lowestInd);
                 if (highestInd == -1) highestInd = i;
+                // if assigned we find max value for highestIndex
                 else highestInd = Math.max(highestInd, i);
             }
         }
